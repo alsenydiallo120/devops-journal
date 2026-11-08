@@ -1,0 +1,51 @@
+Comment afficher les groupes auxquels appartient un utilisateur
+id nom_utilisateur
+Comment afficher tous les utilisateurs
+cat /etc/passwd
+Pour se connecter avec un autre utilisateur on utilise la commande
+su - nom_utilisateur
+Oubien si l'utilisateur a le privilege d'utiliser la commande sudo il fait
+
+sudo su - nom_utilisateur
+Pour se connecter en root on utilise
+sudo su -
+NB: pour que ça marche il faut se connecter avec un utilisateur qui a le privilege d'executer sudo
+
+Afficher les utilisateurs qui on le privilege d'utiliser la commande sudo
+getent group sudo
+Afficher tous les groupes
+getent group
+Afficher un groupe particulier
+getent group nom_du_groupe
+Afficher les groupes d'un utilisateur
+groups nom_utilisateur
+Pour creer un groupe on utilise
+sudo groupadd nom_du_groupe
+Pour creer un utilisateur
+sudo useradd -m -s /bin/bash -G nom_du_groupe nom_user
+Exemple
+
+sudo useradd -m -s /bin/bash -G RH Alseny
+Comment modifier le groupe d'un utilisateur
+sudo usermod -aG nom_du_nouveau_groupe nom_user
+Exemple
+
+sudo usermod -aG informatique Alseny
+Le a à coté du G veux dire append(ajouter aux groupes existants)
+Sans le a, la commande écrase tous les groupes et remplace par le nouveau groupe mentionné
+
+Pour verrouiller complètement un compte utilisateur
+sudo usermod -L -e 1 nom_utilisateur
+-L (pour Lock)
+-e 1 (pour Expire) : Cette option modifie la date d'expiration du compte. La valeur 1 correspond au 1er janvier 1970
+
+Pour verrouiller complètement un compte utilisateur
+sudo usermod -L -e 1 nom_utilisateur
+-L (pour Lock)
+-e 1 (pour Expire) : Cette option modifie la date d'expiration du compte. La valeur 1 correspond au 1er janvier 1970
+
+Ajouter une permission à un fichier ou dossier
+chmod poid_des_groups nom_fichier/nom_dossier
+Exemple
+
+chmod 640 rapport.txt
